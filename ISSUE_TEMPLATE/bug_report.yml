@@ -1,0 +1,95 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: '[bug]: '
+labels: ['bug', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: markdown
+    attributes:
+      value: |
+        **Bug Types**
+        - **func**: Logic errors, crashes, incorrect behavior
+        - **perf**: Slow response times, high resource usage
+        - **doc**: Missing or incorrect documentation
+        - **sec**: Non-critical security issues
+  - type: dropdown
+    id: type
+    attributes:
+      label: Bug Type
+      options:
+        - func
+        - perf
+        - doc
+        - sec
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior
+      description: A clear and concise description of what is currently happening.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        - OS: [e.g. macOS]
+        - Node Version: [e.g. 18.x]
+        - Projen Version: [e.g. 0.82.8]
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs and/or screenshots
+      description: Paste any relevant logs or screenshots. Please use code blocks (```) to format console output.
+    validations:
+      required: false
+  - type: textarea
+    id: fixes
+    attributes:
+      label: Possible fixes
+      description: Describe any potential fixes or workarounds for the issue.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have read the [CONTRIBUTING](https://github.com/tsylana/.github/blob/main/CONTRIBUTING.md) guide
+          required: true
+        - label: I have searched for existing issues and attached similar ones if found
+          required: true
