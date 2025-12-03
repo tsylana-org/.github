@@ -60,7 +60,7 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: I have read the [CONTRIBUTING](CONTRIBUTING.md) guide
+        - label: I have read the [CONTRIBUTING](blob/main/CONTRIBUTING.md) guide
           required: true
         - label: I have searched for existing issues and attached similar ones if found
           required: true
