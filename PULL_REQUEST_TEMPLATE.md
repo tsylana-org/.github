@@ -1,4 +1,4 @@
-# Pull Request
+Fixes #
 
 > ⚠️ **Important**: Please ensure you have created an issue and discussed the solution before submitting this PR.
 
@@ -6,8 +6,6 @@
 
 > Explain the **why** (context) and **what** (implementation) of your changes.
 > Link to the design doc or issue if applicable.
-
-Fixes # (issue)
 
 ## 🛠️ Type of Change
 

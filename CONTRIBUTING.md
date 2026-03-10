@@ -14,39 +14,61 @@ If you discover a security vulnerability, please follow the instructions in [SEC
 
 ### Versioning
 
-This project follows [Semantic Versioning](https://semver.org). Each release increases the version number according to the MAJOR.MINOR.PATCH format. For the available versions, see the tags on this repository.
+This project follows [Semantic Versioning](https://semver.org).
 
 ### Branching Model
 
 This project uses [git-flow-next](https://git-flow.sh) for branching and release strategy.
 
-- **`main`**: Production-ready code.
-- **`develop`**: Integration branch for features.
+We use a lightweight git-flow model with automated releases:
+
+- **`main`**: Production-ready code. Every commit triggers a **release** workflow and publish a new version.
+- **`develop`**: Integration branch for features. Every commit triggers an **alpha release** workflow and publishes an `-alpha` version.
 - **`feature/*`**: New features (branch off `develop`).
-- **`bugfix/*`**: Bug fixes for the upcoming release (branch off `develop`).
+- **`bugfix/*`**: Bug fixes for the upcoming release (branch off `develop`). Similar to `feature/*` but for fixes.
 - **`hotfix/*`**: Quick fixes for production (branch off `main`).
-- **`release/*`**: Release preparation (branch off `develop`).
+- **`release/*`**: Release preparation (branch off `develop`). Often none is done here since releases are automated.
 - **`support/*`**: Maintenance for older versions (branch off `main`).
 
-### Getting Started with git-flow-next
+### Git worktrees
 
-1. **Install**: Follow instructions at [git-flow-next](https://git-flow.sh).
-2. **Initialize**: Run `git flow init` in the repo root.
-3. **Start a Feature**: `git flow feature start my-feature`
-4. **Finish a Feature**: `git flow feature finish my-feature`
+Use [Git Worktrees](https://git-scm.com/docs/git-worktree) to work on multiple features in parallel without constantly switching branches in the main directory or invalidating caches.
+
+```sh
+# Create a worktree for a feature branch
+git worktree add .worktrees/my-feature -b feature/my-feature
+cd .worktrees/my-feature
+
+# Fresh environment
+pnpm install
+pnpm exec projen
+
+# When done
+cd ../..
+git worktree remove .worktrees/my-feature
+```
 
 ## Monorepo Management
 
 Managed by [NX](https://nx.dev) and [Projen](https://projen.io). Configuration is centralized in [.projenrc.ts](.projenrc.ts).
 
+### Bootstrap
+
+Bootstrap the development environment.
+
+```sh
+pnpm install
+pnpm exec projen
+```
+
 ### Package & Dependency Management
 
 All changes (new packages, dependencies, settings) start in [.projenrc.ts](.projenrc.ts).
 
-- **Add Package**: Define the package in [.projenrc.ts](.projenrc.ts), then run `projen`.
-- **Manage Dependencies**: Add/remove in [.projenrc.ts](.projenrc.ts), then run `projen`.
-- **Upgrade**: Run `projen upgrade-deps`.
-- **Visualize**: Run `projen graph`.
+- **Add Package**: Define the package in [.projenrc.ts](.projenrc.ts), then run `pnpm exec projen`.
+- **Manage Dependencies**: Add/remove in [.projenrc.ts](.projenrc.ts), then run `pnpm exec projen`.
+- **Upgrade**: Run `pnpm exec projen upgrade`.
+- **Visualize**: Run `pnpm exec projen graph`.
 
 ### Cache
 
@@ -54,20 +76,20 @@ Nx automatically caches build outputs. If you run a build and nothing has change
 
 - **Clear Cache**: If you run into issues, you can force a rebuild by passing `--skip-nx-cache` to Nx commands or manually deleting `.nx/cache` and `node_modules/`.
 
-### Test
-
-Run tests across all packages.
-
-```sh
-projen test
-```
-
 ### Build
 
 Perform a full build of the codebase in dependency order.
 
 ```sh
-projen build
+pnpm exec projen build
+```
+
+### Test
+
+Run tests across all packages.
+
+```sh
+pnpm exec projen test
 ```
 
 ### Synth & Deploy
@@ -75,8 +97,8 @@ projen build
 Synthesize and deploy infrastructure via AWS CDK.
 
 ```sh
-projen synth
-projen deploy
+pnpm exec projen synth
+pnpm exec projen deploy
 ```
 
 ### Extra
@@ -86,25 +108,25 @@ Advanced commands for targeting specific packages or tasks.
 - **Run task in specific package**:
 
     ```sh
-    nx run <package>:<task>
+    pnpm exec nx run <package>:<task>
     ```
 
 - **Run task in all packages**:
 
     ```sh
-    projen run-many --targets=<task> --output-style=stream --nx-bail
+    pnpm exec projen run-many --targets=<task> --output-style=stream --nx-bail
     ```
 
 ## Code Standards
 
 - **Commits**: Follow [Conventional Commits](https://www.conventionalcommits.org).
-- **Style**: Prettier and ESLint are enforced. Run `projen eslint` to fix formatting.
-- **Documentation**: Update `README.md` and `AGENTS.md` in the relevant packages if you change behavior.
-- **Diagrams**: We use [D2](https://d2lang.com) as the preferred language for diagrams (architecture, sequence, etc.). Store source files in `docs/` or alongside documentation.
+- **Style**: Prettier and ESLint are enforced. Run `pnpm exec projen eslint` to fix formatting.
+- **Documentation**: Update `README.md` and package docs if you change behavior.
+- **Diagrams**: Use [Mermaid](https://mermaid.js.org) for diagrams embedded in Markdown. Use [D2](https://d2lang.com) for richer diagrams that you keep as source (store in `docs/` or alongside the related documentation).
 
 ## Pull Requests
 
-1. Ensure all tests pass (`projen test`).
+1. Ensure all tests pass (`pnpm exec projen test`).
 2. Update documentation if needed.
 3. Open a PR against `develop` (for features) or `main` (for hotfixes).
 4. Link relevant issues.

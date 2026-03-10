@@ -1,15 +1,16 @@
 name: 🚀 Feature Request
 description: Suggest an idea for this project
-title: 'feat: '
-labels: ['enhancement', 'needs-triage']
+title: "feat: "
+labels:
+  - enhancement
+  - needs-triage
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for suggesting a new feature!
+      value: Thanks for suggesting a new feature!
   - type: markdown
     attributes:
-      value: |
+      value: |-
         **Feature Types**
         - **feat**: A new feature
         - **improve**: An improvement to an existing feature

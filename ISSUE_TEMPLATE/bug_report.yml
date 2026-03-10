@@ -1,15 +1,16 @@
 name: 🐛 Bug Report
 description: Create a report to help us improve
-title: '[bug]: '
-labels: ['bug', 'needs-triage']
+title: "[bug]: "
+labels:
+  - bug
+  - needs-triage
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
+      value: Thanks for taking the time to fill out this bug report!
   - type: markdown
     attributes:
-      value: |
+      value: |-
         **Bug Types**
         - **func**: Logic errors, crashes, incorrect behavior
         - **perf**: Slow response times, high resource usage
@@ -53,7 +54,7 @@ body:
     attributes:
       label: Steps to Reproduce
       description: Steps to reproduce the behavior.
-      placeholder: |
+      placeholder: |-
         1. Go to '...'
         2. Click on '...'
         3. Scroll down to '...'
@@ -64,10 +65,10 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: |
+      description: |-
         - OS: [e.g. macOS]
-        - Node Version: [e.g. 18.x]
-        - Projen Version: [e.g. 0.82.8]
+        - Node Version: [e.g. 24.x]
+        - Projen Version: [e.g. 0.98.28]
     validations:
       required: false
   - type: textarea
