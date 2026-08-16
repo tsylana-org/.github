@@ -42,8 +42,6 @@ Use [Git worktrees](https://git-scm.com/docs/git-worktree) for parallel feature 
 
 - **Scope**: keep each PR focused; explain its intent and link relevant issues.
 - **Verification**: run the affected `AGENTS.md` commands and include evidence.
-  For distribution changes, validate the manifest, catalog, and root plugin
-  table together.
 - **Documentation**: update durable guidance when commands, behavior, or package
   boundaries change.
 - **Target**: use `develop` for feature work and `main` for hotfixes.
