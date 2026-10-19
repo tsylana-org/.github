@@ -7,6 +7,8 @@
 3. Gather the expected behavior, reproduction steps, environment, and useful
    evidence without including sensitive information.
 
+For security-sensitive reports, follow [SECURITY](SECURITY.md).
+
 ## Reporting Bugs
 
 If the behavior is incorrect, open a
